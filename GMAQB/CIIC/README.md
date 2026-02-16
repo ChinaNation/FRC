@@ -42,3 +42,56 @@
 * 联邦公民身份识别码由省代码+档案索引号+随机码组成，例：GDW20250123123456789Hj26E18nC12PO83，省代码为两位大写字母，档案索引号为性别码（男M女W）+生日码（出生年月日）+9位数字档案号组成，随机码由15位随机大写字母、小写字母和数字组成；
 * 我们将两套系统建设完成后，将先在海外部署上线，并在有条件的海外地区建立起线下的护照办理点，虽然我们在中共统治的沦陷区无法立即使用，但我们希望通过这种曲线救国的方式把海外的华人团结起来，当我们的力量足够庞大的时候，我们将不再恐惧，感到恐惧的将是中共。
 ![alt text](https://raw.githubusercontent.com/ChinaNation/FRC/main/GMAQB/wenku/公民护照及身份识别码管理系统.png)
+
+* CIIC 系统参数
+CIIC 系统最新技术参数（按当前实现）
+
+统一签名规格
+算法：sr25519
+签名长度：64 字节原始签名（绑定与投票一致）
+绑定请求（链上 bind_ciic）
+入参：
+ciic_code：bytes（UTF-8，<=64）
+credential.ciic_code_hash：32 bytes
+credential.nonce：bytes（1..64）
+credential.signature：64 bytes
+必须满足：
+hash(ciic_code) == ciic_code_hash
+绑定 nonce 全局唯一（CIIC 保证；链上也防重放）
+绑定签名消息（CIIC 端构造）
+Domain：GMB_CIIC_BIND_V1
+Payload：
+domain
+genesis_hash (block_hash(0))
+account_id
+ciic_code_hash
+nonce
+SCALE encode -> blake2_256 -> sr25519 sign
+公民投票请求（链上 citizen_vote）
+入参：
+proposal_id: u64
+ciic: bytes (<=64)
+eligible_total: u64（同提案首票带入）
+nonce: bytes (1..64)
+signature: 64 bytes
+approve: bool
+投票签名消息（CIIC 端构造）
+Domain：GMB_CIIC_VOTE_V1
+Payload：
+domain
+genesis_hash
+account_id
+ciic_code_hash
+proposal_id
+eligible_total
+nonce
+SCALE encode -> blake2_256 -> sr25519 sign
+分母锁定规则（你定义的）
+同一个 proposal_id：
+首个有效投票写入 eligible_total
+后续投票不能修改该提案分母
+不同提案可各自由首票重新带入分母
+防重放与去重
+绑定：UsedCredentialNonce 全局防重放
+投票：UsedVoteNonce 全局防重放（CIIC 需保证全局唯一 nonce）
+同提案投票：proposal_id + ciic_code_hash 只能 1 票
