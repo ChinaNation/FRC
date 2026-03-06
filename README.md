@@ -73,6 +73,7 @@
    - [第五十条](#第五十条)
    - [第五十一条](#第五十一条)
   </details>
+</details>
 - <details>
   <summary>第二章  政府</summary>
   <details>
@@ -110,6 +111,7 @@
    - [第六十九条](#第六十九条)
    - [第七十条](#第七十条)
   </details>
+</details>
 - <details>
   <summary>第三章  立法院</summary>
   <details>
@@ -140,6 +142,7 @@
    - [第八十五条](#第八十五条)
    - [第八十六条](#第八十六条)
   </details>
+</details>
 - <details>
   <summary>第四章  司法院</summary>
   <details>
@@ -165,6 +168,7 @@
    - [第九十六条](#第九十六条)
    - [第九十七条](#第九十七条)
   </details>
+</details>
 - <details>
   <summary>第五章  监察院</summary>
   <details>
@@ -208,6 +212,7 @@
    - [第一百一十三条](#第一百一十三条)
    - [第一百一十四条](#第一百一十四条)
   </details>
+</details>
 - <details>
   <summary>第六章  教委会</summary>
   <details>
@@ -237,6 +242,7 @@
    - [第一百二十八条](#第一百二十八条)
    - [第一百二十九条](#第一百二十九条)
   </details>
+</details>
 - <details>
   <summary>第七章  储委会</summary>
   <details>
@@ -265,6 +271,7 @@
    - [第一百三十八条](#第一百三十八条)
    - [第一百三十九条](#第一百三十九条)
   </details>
+</details>
 ****
 ## 第一章  总则
 ## 第一节  国家的定义
